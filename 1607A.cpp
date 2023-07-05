@@ -6,26 +6,31 @@ int main()
 {
     int t;
     cin >> t;
-    t=2*t;
     while (t--)
     {
-        string str;
-        cin>>str;
-        int time=0;
-
-//incomplete
-
-
-        for(int i=1;i<str.size();i++){
-            int diff=abs(str[i-1] - str[i]);
-            time+=diff;
+        string keyboard, str;
+        cin >> keyboard;
+        cin >> str;
+        int curr,prev,diff = 0;
+        for(int i=0;i<26;i++){
+            if(str[0]==keyboard[i]){
+                prev=i+1;
+                break;
+            }
         }
-
-
-
-
-
-
-        cout<<time<<endl;
+        for (int i = 1; i < str.size(); i++)
+        {
+            for (int j = 0; j < 26; j++)
+            {
+                if (str[i] == keyboard[j])
+                {
+                    curr = j + 1;
+                    diff += abs(curr-prev);
+                    prev = curr;
+                    break;
+                }
+            }
+        }
+        cout << diff << endl;
     }
 }
